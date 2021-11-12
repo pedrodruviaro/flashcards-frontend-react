@@ -16,7 +16,7 @@ export const Container = styled.main`
         max-width: 1400px;
         margin: 0 auto;
 
-        outline: 2px solid ${(props) => props.theme.dark};
+        outline: 2px solid ${(props) => props.theme.medium};
 
         > * {
             flex: 1;
@@ -77,6 +77,14 @@ export const Container = styled.main`
                 width: 100%;
                 /* max-width: 20rem; */
                 margin-inline: auto;
+            }
+        }
+    }
+
+    @media (max-width: 45rem) {
+        div {
+            section:first-child {
+                display: none;
             }
         }
     }
