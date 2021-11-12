@@ -10,6 +10,11 @@ const types = {
         message:
             "Password must contain at least 6 characters and a maximum of 72.",
     },
+    name: {
+        regex: /^(?=.{5,150})/,
+        message:
+            "Password must contain at least 5 characters and a maximum of 150.",
+    },
 };
 
 export const useForm = (type) => {
