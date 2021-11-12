@@ -1,27 +1,17 @@
 import { Container } from "./styles";
-import { Input } from "../../components/Input";
-import { CustomTitle } from "../../components/CustomTitle";
-import { Button } from "../../components/Button";
+import { LoginForm } from "../../components/LoginForm";
+import { RegisterForm } from "../../components/RegisterForm";
+import { Route, Routes } from "react-router";
 
 export const Login = () => {
     return (
         <Container>
             <div>
                 <section></section>
-                <section>
-                    <CustomTitle>Login</CustomTitle>
-                    <form>
-                        <Input label="Email" />
-                        <Input label="Password" />
-                        <a href="/">Forgot your password?</a>
-                        <Button>Enter</Button>
-                    </form>
-
-                    <div>
-                        <p>Don't have an account? It's free.</p>
-                        <Button secondary>Sign In</Button>
-                    </div>
-                </section>
+                <Routes>
+                    <Route path="" element={<LoginForm />} />
+                    <Route path="register" element={<RegisterForm />} />
+                </Routes>
             </div>
         </Container>
     );
