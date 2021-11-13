@@ -11,9 +11,30 @@ export const Container = styled.header`
 
     box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 5px;
 
-    div {
+    h1 {
+        font-weight: 500;
+        font-size: 1.25rem;
+
+        img {
+            max-width: 3rem;
+        }
+    }
+
+    div,
+    h1 {
         display: flex;
         align-items: center;
         gap: 0.5rem;
+    }
+
+    div {
+        span {
+            font-size: 1.15rem;
+        }
+
+        svg {
+            font-size: 1.5rem;
+            color: ${(props) => props.theme.accent};
+        }
     }
 `;
