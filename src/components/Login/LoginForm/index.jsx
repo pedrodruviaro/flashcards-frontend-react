@@ -1,9 +1,9 @@
-import { CustomTitle } from "../CustomTitle";
-import { Input } from "../Input";
-import { Button } from "../Button";
+import { CustomTitle } from "../../CustomTitle";
+import { Input } from "../../Input";
+import { Button } from "../../Button";
 import { useNavigate } from "react-router";
-import { useForm } from "../../hooks/useForm";
-import { useAuth } from "../../hooks/useAuth";
+import { useForm } from "../../../hooks/useForm";
+import { useAuth } from "../../../hooks/useAuth";
 
 export const LoginForm = () => {
     const navigate = useNavigate();
@@ -24,8 +24,8 @@ export const LoginForm = () => {
         //     password: password.value,
         // };
         const credentials = {
-            email: "mariobros@gmail.com",
-            password: "mariobros",
+            email: "pedrodalmolin@gmail.com",
+            password: "pedrodalmolin",
         };
 
         await loginUser(credentials);

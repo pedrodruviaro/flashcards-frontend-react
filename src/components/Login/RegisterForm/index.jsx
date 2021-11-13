@@ -1,8 +1,8 @@
-import { CustomTitle } from "../CustomTitle";
-import { Input } from "../Input";
-import { Button } from "../Button";
+import { CustomTitle } from "../../CustomTitle";
+import { Input } from "../../Input";
+import { Button } from "../../Button";
 import { useNavigate } from "react-router";
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "../../../hooks/useForm";
 
 export const RegisterForm = () => {
     const navigate = useNavigate();

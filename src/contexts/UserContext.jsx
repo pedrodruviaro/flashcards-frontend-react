@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "../services/api";
+import { api, REMOVE_API_TOKEN, SET_API_TOKEN } from "../services/api";
 
 export const UserContext = createContext();
 UserContext.displayName = "User Context";
@@ -13,6 +13,40 @@ export const UserContextProvider = ({ children }) => {
 
     const navigate = useNavigate();
 
+    // FUNCTION VALIDATE TOKEN
+
+    const validateToken = useCallback(
+        async (token) => {
+            SET_API_TOKEN(token);
+            try {
+                const response = await api.get("/auth/token");
+                if (response.statusText !== "OK") {
+                    throw new Error();
+                }
+
+                setUser(response.data);
+                setAuthorized(true);
+                SET_API_TOKEN(token);
+                navigate("/dashboard");
+            } catch (err) {
+                REMOVE_API_TOKEN();
+            }
+        },
+        [navigate]
+    );
+
+    // PERSISTING USER
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem("token"));
+        if (!token) {
+            navigate("/");
+            return;
+        }
+
+        validateToken(token);
+    }, [validateToken, navigate]);
+
+    // FUNCTION LOGIN
     async function loginUser(credentials) {
         setLoadingAuth(true);
         setErrorAuth(false);
@@ -25,7 +59,8 @@ export const UserContextProvider = ({ children }) => {
             if (data.ok) {
                 setUser(data);
                 setAuthorized(true);
-
+                SET_API_TOKEN(data.token);
+                localStorage.setItem("token", JSON.stringify(data.token));
                 navigate("/dashboard");
             }
         } catch (error) {
