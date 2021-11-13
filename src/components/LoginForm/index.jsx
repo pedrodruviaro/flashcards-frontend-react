@@ -1,29 +1,34 @@
-import React from "react";
 import { CustomTitle } from "../CustomTitle";
 import { Input } from "../Input";
 import { Button } from "../Button";
 import { useNavigate } from "react-router";
 import { useForm } from "../../hooks/useForm";
+import { useAuth } from "../../hooks/useAuth";
 
 export const LoginForm = () => {
     const navigate = useNavigate();
+    const { loginUser, loadingAuth, errorAuth } = useAuth();
 
     const email = useForm("email");
     const password = useForm("password");
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        if (!email.validate() || !password.validate()) {
-            return;
-        }
+        // if (!email.validate() || !password.validate()) {
+        //     return;
+        // }
 
+        // const credentials = {
+        //     email: email.value,
+        //     password: password.value,
+        // };
         const credentials = {
-            email: email.value,
-            password: password.value,
+            email: "mariobros@gmail.com",
+            password: "mariobros",
         };
 
-        console.log(credentials);
+        await loginUser(credentials);
     }
 
     return (
@@ -43,7 +48,10 @@ export const LoginForm = () => {
                     {...password}
                 />
                 <a href="/">Forgot your password?</a>
-                <Button>Enter</Button>
+                {errorAuth && <p>{errorAuth}</p>}
+                <Button type="submit" disabled={loadingAuth}>
+                    Enter
+                </Button>
             </form>
 
             <div>

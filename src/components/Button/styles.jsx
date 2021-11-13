@@ -19,6 +19,11 @@ export const Container = styled.button`
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
 
+    &:disabled {
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: wait;
+    }
+
     ${(props) =>
         props.secondary &&
         css`
