@@ -12,6 +12,13 @@ export const Container = styled.article`
     width: 100%;
     /* max-width: 30rem; */
 
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        outline: 2px solid #ccc;
+    }
+
     header {
         text-align: left;
 

@@ -1,9 +1,12 @@
 import moment from "moment";
+import { useNavigate } from "react-router";
 import { Container } from "./styles";
 
 export const CollectionPreview = ({ collection }) => {
+    const navigate = useNavigate();
+
     return (
-        <Container>
+        <Container onClick={() => navigate(`/collection/${collection.id}`)}>
             <header>
                 <h3>{collection.name}</h3>
                 <p>{collection.description}</p>

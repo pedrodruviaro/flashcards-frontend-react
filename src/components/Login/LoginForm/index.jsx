@@ -37,7 +37,7 @@ export const LoginForm = () => {
             <form onSubmit={handleSubmit}>
                 <Input
                     type="text"
-                    placeholder="email@domail.com"
+                    placeholder="youremail@domain.com"
                     label="Email"
                     {...email}
                 />

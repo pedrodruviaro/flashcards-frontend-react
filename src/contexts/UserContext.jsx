@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { api, REMOVE_API_TOKEN, SET_API_TOKEN } from "../services/api";
 
 export const UserContext = createContext();
@@ -12,6 +12,7 @@ export const UserContextProvider = ({ children }) => {
     const [errorAuth, setErrorAuth] = useState(null);
 
     const navigate = useNavigate();
+    const location = useLocation().pathname;
 
     // FUNCTION VALIDATE TOKEN
 
@@ -27,12 +28,13 @@ export const UserContextProvider = ({ children }) => {
                 setUser(response.data);
                 setAuthorized(true);
                 SET_API_TOKEN(token);
-                navigate("/dashboard");
+
+                navigate(location);
             } catch (err) {
                 REMOVE_API_TOKEN();
             }
         },
-        [navigate]
+        [navigate, location]
     );
 
     // PERSISTING USER
